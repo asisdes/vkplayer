@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		849C7D321C95BB0A00745168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C7D311C95BB0A00745168 /* AppDelegate.swift */; };
+		849C7D341C95BB0A00745168 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C7D331C95BB0A00745168 /* ViewController.swift */; };
+		849C7D371C95BB0A00745168 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849C7D351C95BB0A00745168 /* Main.storyboard */; };
+		849C7D391C95BB0A00745168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 849C7D381C95BB0A00745168 /* Assets.xcassets */; };
+		849C7D3C1C95BB0A00745168 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849C7D3A1C95BB0A00745168 /* LaunchScreen.storyboard */; };
+		849C7D471C95BB0A00745168 /* SimpleVKPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C7D461C95BB0A00745168 /* SimpleVKPlayerTests.swift */; };
+		849C7D521C95BB0A00745168 /* SimpleVKPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C7D511C95BB0A00745168 /* SimpleVKPlayerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		849C7D431C95BB0A00745168 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 849C7D261C95BB0A00745168 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 849C7D2D1C95BB0A00745168;
+			remoteInfo = SimpleVKPlayer;
+		};
+		849C7D4E1C95BB0A00745168 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 849C7D261C95BB0A00745168 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 849C7D2D1C95BB0A00745168;
+			remoteInfo = SimpleVKPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		849C7D2E1C95BB0A00745168 /* SimpleVKPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleVKPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		849C7D311C95BB0A00745168 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		849C7D331C95BB0A00745168 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		849C7D361C95BB0A00745168 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		849C7D381C95BB0A00745168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		849C7D3B1C95BB0A00745168 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		849C7D3D1C95BB0A00745168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		849C7D421C95BB0A00745168 /* SimpleVKPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleVKPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		849C7D461C95BB0A00745168 /* SimpleVKPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVKPlayerTests.swift; sourceTree = "<group>"; };
+		849C7D481C95BB0A00745168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		849C7D4D1C95BB0A00745168 /* SimpleVKPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleVKPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		849C7D511C95BB0A00745168 /* SimpleVKPlayerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVKPlayerUITests.swift; sourceTree = "<group>"; };
+		849C7D531C95BB0A00745168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		849C7D2B1C95BB0A00745168 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		849C7D3F1C95BB0A00745168 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		849C7D4A1C95BB0A00745168 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		849C7D251C95BB0A00745168 = {
+			isa = PBXGroup;
+			children = (
+				849C7D301C95BB0A00745168 /* SimpleVKPlayer */,
+				849C7D451C95BB0A00745168 /* SimpleVKPlayerTests */,
+				849C7D501C95BB0A00745168 /* SimpleVKPlayerUITests */,
+				849C7D2F1C95BB0A00745168 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		849C7D2F1C95BB0A00745168 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				849C7D2E1C95BB0A00745168 /* SimpleVKPlayer.app */,
+				849C7D421C95BB0A00745168 /* SimpleVKPlayerTests.xctest */,
+				849C7D4D1C95BB0A00745168 /* SimpleVKPlayerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		849C7D301C95BB0A00745168 /* SimpleVKPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				849C7D311C95BB0A00745168 /* AppDelegate.swift */,
+				849C7D331C95BB0A00745168 /* ViewController.swift */,
+				849C7D351C95BB0A00745168 /* Main.storyboard */,
+				849C7D381C95BB0A00745168 /* Assets.xcassets */,
+				849C7D3A1C95BB0A00745168 /* LaunchScreen.storyboard */,
+				849C7D3D1C95BB0A00745168 /* Info.plist */,
+			);
+			path = SimpleVKPlayer;
+			sourceTree = "<group>";
+		};
+		849C7D451C95BB0A00745168 /* SimpleVKPlayerTests */ = {
+			isa = PBXGroup;
+			children = (
+				849C7D461C95BB0A00745168 /* SimpleVKPlayerTests.swift */,
+				849C7D481C95BB0A00745168 /* Info.plist */,
+			);
+			path = SimpleVKPlayerTests;
+			sourceTree = "<group>";
+		};
+		849C7D501C95BB0A00745168 /* SimpleVKPlayerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				849C7D511C95BB0A00745168 /* SimpleVKPlayerUITests.swift */,
+				849C7D531C95BB0A00745168 /* Info.plist */,
+			);
+			path = SimpleVKPlayerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		849C7D2D1C95BB0A00745168 /* SimpleVKPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 849C7D561C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayer" */;
+			buildPhases = (
+				849C7D2A1C95BB0A00745168 /* Sources */,
+				849C7D2B1C95BB0A00745168 /* Frameworks */,
+				849C7D2C1C95BB0A00745168 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleVKPlayer;
+			productName = SimpleVKPlayer;
+			productReference = 849C7D2E1C95BB0A00745168 /* SimpleVKPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		849C7D411C95BB0A00745168 /* SimpleVKPlayerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 849C7D591C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayerTests" */;
+			buildPhases = (
+				849C7D3E1C95BB0A00745168 /* Sources */,
+				849C7D3F1C95BB0A00745168 /* Frameworks */,
+				849C7D401C95BB0A00745168 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				849C7D441C95BB0A00745168 /* PBXTargetDependency */,
+			);
+			name = SimpleVKPlayerTests;
+			productName = SimpleVKPlayerTests;
+			productReference = 849C7D421C95BB0A00745168 /* SimpleVKPlayerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		849C7D4C1C95BB0A00745168 /* SimpleVKPlayerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 849C7D5C1C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayerUITests" */;
+			buildPhases = (
+				849C7D491C95BB0A00745168 /* Sources */,
+				849C7D4A1C95BB0A00745168 /* Frameworks */,
+				849C7D4B1C95BB0A00745168 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				849C7D4F1C95BB0A00745168 /* PBXTargetDependency */,
+			);
+			name = SimpleVKPlayerUITests;
+			productName = SimpleVKPlayerUITests;
+			productReference = 849C7D4D1C95BB0A00745168 /* SimpleVKPlayerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		849C7D261C95BB0A00745168 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Yukupov Aziz";
+				TargetAttributes = {
+					849C7D2D1C95BB0A00745168 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					849C7D411C95BB0A00745168 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 849C7D2D1C95BB0A00745168;
+					};
+					849C7D4C1C95BB0A00745168 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 849C7D2D1C95BB0A00745168;
+					};
+				};
+			};
+			buildConfigurationList = 849C7D291C95BB0A00745168 /* Build configuration list for PBXProject "SimpleVKPlayer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 849C7D251C95BB0A00745168;
+			productRefGroup = 849C7D2F1C95BB0A00745168 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				849C7D2D1C95BB0A00745168 /* SimpleVKPlayer */,
+				849C7D411C95BB0A00745168 /* SimpleVKPlayerTests */,
+				849C7D4C1C95BB0A00745168 /* SimpleVKPlayerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		849C7D2C1C95BB0A00745168 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				849C7D3C1C95BB0A00745168 /* LaunchScreen.storyboard in Resources */,
+				849C7D391C95BB0A00745168 /* Assets.xcassets in Resources */,
+				849C7D371C95BB0A00745168 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		849C7D401C95BB0A00745168 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		849C7D4B1C95BB0A00745168 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		849C7D2A1C95BB0A00745168 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				849C7D341C95BB0A00745168 /* ViewController.swift in Sources */,
+				849C7D321C95BB0A00745168 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		849C7D3E1C95BB0A00745168 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				849C7D471C95BB0A00745168 /* SimpleVKPlayerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		849C7D491C95BB0A00745168 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				849C7D521C95BB0A00745168 /* SimpleVKPlayerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		849C7D441C95BB0A00745168 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 849C7D2D1C95BB0A00745168 /* SimpleVKPlayer */;
+			targetProxy = 849C7D431C95BB0A00745168 /* PBXContainerItemProxy */;
+		};
+		849C7D4F1C95BB0A00745168 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 849C7D2D1C95BB0A00745168 /* SimpleVKPlayer */;
+			targetProxy = 849C7D4E1C95BB0A00745168 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		849C7D351C95BB0A00745168 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				849C7D361C95BB0A00745168 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		849C7D3A1C95BB0A00745168 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				849C7D3B1C95BB0A00745168 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		849C7D541C95BB0A00745168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		849C7D551C95BB0A00745168 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		849C7D571C95BB0A00745168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SimpleVKPlayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YAVKplayer.SimpleVKPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		849C7D581C95BB0A00745168 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SimpleVKPlayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YAVKplayer.SimpleVKPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		849C7D5A1C95BB0A00745168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SimpleVKPlayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YAVKplayer.SimpleVKPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleVKPlayer.app/SimpleVKPlayer";
+			};
+			name = Debug;
+		};
+		849C7D5B1C95BB0A00745168 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SimpleVKPlayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YAVKplayer.SimpleVKPlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleVKPlayer.app/SimpleVKPlayer";
+			};
+			name = Release;
+		};
+		849C7D5D1C95BB0A00745168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SimpleVKPlayerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YAVKplayer.SimpleVKPlayerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SimpleVKPlayer;
+			};
+			name = Debug;
+		};
+		849C7D5E1C95BB0A00745168 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SimpleVKPlayerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YAVKplayer.SimpleVKPlayerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SimpleVKPlayer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		849C7D291C95BB0A00745168 /* Build configuration list for PBXProject "SimpleVKPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				849C7D541C95BB0A00745168 /* Debug */,
+				849C7D551C95BB0A00745168 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		849C7D561C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				849C7D571C95BB0A00745168 /* Debug */,
+				849C7D581C95BB0A00745168 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		849C7D591C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				849C7D5A1C95BB0A00745168 /* Debug */,
+				849C7D5B1C95BB0A00745168 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		849C7D5C1C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				849C7D5D1C95BB0A00745168 /* Debug */,
+				849C7D5E1C95BB0A00745168 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 849C7D261C95BB0A00745168 /* Project object */;
+}
