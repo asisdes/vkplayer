@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		334C2587A26E2A173DF5BB04 /* Pods_SimpleVKPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D095C573620E97237760444 /* Pods_SimpleVKPlayer.framework */; };
 		849C7D321C95BB0A00745168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C7D311C95BB0A00745168 /* AppDelegate.swift */; };
 		849C7D341C95BB0A00745168 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C7D331C95BB0A00745168 /* ViewController.swift */; };
 		849C7D371C95BB0A00745168 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849C7D351C95BB0A00745168 /* Main.storyboard */; };
@@ -14,6 +15,22 @@
 		849C7D3C1C95BB0A00745168 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 849C7D3A1C95BB0A00745168 /* LaunchScreen.storyboard */; };
 		849C7D471C95BB0A00745168 /* SimpleVKPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C7D461C95BB0A00745168 /* SimpleVKPlayerTests.swift */; };
 		849C7D521C95BB0A00745168 /* SimpleVKPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C7D511C95BB0A00745168 /* SimpleVKPlayerUITests.swift */; };
+		84A503691D1AC89600E27230 /* pan.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A503681D1AC89600E27230 /* pan.png */; };
+		84A5036D1D1ACAB100E27230 /* volumePan.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A5036C1D1ACAB100E27230 /* volumePan.png */; };
+		84A503701D1ACCA900E27230 /* awesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84A5036E1D1ACC1000E27230 /* awesome.ttf */; };
+		84FC32451D1A7D2500DC49BA /* b1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC32401D1A7D2500DC49BA /* b1.mp3 */; };
+		84FC32461D1A7D2500DC49BA /* b2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC32411D1A7D2500DC49BA /* b2.mp3 */; };
+		84FC32471D1A7D2500DC49BA /* b3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC32421D1A7D2500DC49BA /* b3.mp3 */; };
+		84FC32481D1A7D2500DC49BA /* j1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC32431D1A7D2500DC49BA /* j1.mp3 */; };
+		84FC32491D1A7D2500DC49BA /* j2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC32441D1A7D2500DC49BA /* j2.mp3 */; };
+		84FC324F1D1A7D2D00DC49BA /* n1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC324A1D1A7D2D00DC49BA /* n1.mp3 */; };
+		84FC32501D1A7D2D00DC49BA /* n2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC324B1D1A7D2D00DC49BA /* n2.mp3 */; };
+		84FC32511D1A7D2D00DC49BA /* p1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC324C1D1A7D2D00DC49BA /* p1.mp3 */; };
+		84FC32521D1A7D2D00DC49BA /* pn1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC324D1D1A7D2D00DC49BA /* pn1.mp3 */; };
+		84FC32531D1A7D2D00DC49BA /* s1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84FC324E1D1A7D2D00DC49BA /* s1.mp3 */; };
+		84FC32551D1A7D3800DC49BA /* testImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FC32541D1A7D3800DC49BA /* testImg.png */; };
+		C320FB4573AED70A9A52B3C0 /* Pods_SimpleVKPlayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA81B73895A3A29B72E5F3BC /* Pods_SimpleVKPlayerTests.framework */; };
+		E5ADCFABFC1E53A1488C4419 /* Pods_SimpleVKPlayerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B8777E06F6DF05E94445E8 /* Pods_SimpleVKPlayerUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		513EF21B6A52BCF3B56D73B7 /* Pods-SimpleVKPlayerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVKPlayerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVKPlayerUITests/Pods-SimpleVKPlayerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5D095C573620E97237760444 /* Pods_SimpleVKPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleVKPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		849C7D2E1C95BB0A00745168 /* SimpleVKPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleVKPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849C7D311C95BB0A00745168 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		849C7D331C95BB0A00745168 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +66,27 @@
 		849C7D4D1C95BB0A00745168 /* SimpleVKPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleVKPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		849C7D511C95BB0A00745168 /* SimpleVKPlayerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleVKPlayerUITests.swift; sourceTree = "<group>"; };
 		849C7D531C95BB0A00745168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84A503681D1AC89600E27230 /* pan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pan.png; sourceTree = "<group>"; };
+		84A5036C1D1ACAB100E27230 /* volumePan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = volumePan.png; sourceTree = "<group>"; };
+		84A5036E1D1ACC1000E27230 /* awesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = awesome.ttf; sourceTree = "<group>"; };
+		84FC32401D1A7D2500DC49BA /* b1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = b1.mp3; sourceTree = "<group>"; };
+		84FC32411D1A7D2500DC49BA /* b2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = b2.mp3; sourceTree = "<group>"; };
+		84FC32421D1A7D2500DC49BA /* b3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = b3.mp3; sourceTree = "<group>"; };
+		84FC32431D1A7D2500DC49BA /* j1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = j1.mp3; sourceTree = "<group>"; };
+		84FC32441D1A7D2500DC49BA /* j2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = j2.mp3; sourceTree = "<group>"; };
+		84FC324A1D1A7D2D00DC49BA /* n1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = n1.mp3; sourceTree = "<group>"; };
+		84FC324B1D1A7D2D00DC49BA /* n2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = n2.mp3; sourceTree = "<group>"; };
+		84FC324C1D1A7D2D00DC49BA /* p1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = p1.mp3; sourceTree = "<group>"; };
+		84FC324D1D1A7D2D00DC49BA /* pn1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pn1.mp3; sourceTree = "<group>"; };
+		84FC324E1D1A7D2D00DC49BA /* s1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = s1.mp3; sourceTree = "<group>"; };
+		84FC32541D1A7D3800DC49BA /* testImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImg.png; sourceTree = "<group>"; };
+		894763DE0EDD98DFB206EE6D /* Pods-SimpleVKPlayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVKPlayerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVKPlayerTests/Pods-SimpleVKPlayerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9DF4362DE69D91F85662A59E /* Pods-SimpleVKPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVKPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVKPlayer/Pods-SimpleVKPlayer.debug.xcconfig"; sourceTree = "<group>"; };
+		B1A9D6628EEAD5E340B58956 /* Pods-SimpleVKPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVKPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVKPlayer/Pods-SimpleVKPlayer.release.xcconfig"; sourceTree = "<group>"; };
+		C7B8777E06F6DF05E94445E8 /* Pods_SimpleVKPlayerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleVKPlayerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA81B73895A3A29B72E5F3BC /* Pods_SimpleVKPlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleVKPlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8E56A57150C7A0617A5252A /* Pods-SimpleVKPlayerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVKPlayerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVKPlayerUITests/Pods-SimpleVKPlayerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F9F443ED318ADD0E430B28F4 /* Pods-SimpleVKPlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleVKPlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleVKPlayerTests/Pods-SimpleVKPlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				334C2587A26E2A173DF5BB04 /* Pods_SimpleVKPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C320FB4573AED70A9A52B3C0 /* Pods_SimpleVKPlayerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5ADCFABFC1E53A1488C4419 /* Pods_SimpleVKPlayerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +124,8 @@
 				849C7D451C95BB0A00745168 /* SimpleVKPlayerTests */,
 				849C7D501C95BB0A00745168 /* SimpleVKPlayerUITests */,
 				849C7D2F1C95BB0A00745168 /* Products */,
+				9469F6259F37FDC92FA28264 /* Pods */,
+				C72268B47DF12F9B7D142528 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +144,9 @@
 			children = (
 				849C7D311C95BB0A00745168 /* AppDelegate.swift */,
 				849C7D331C95BB0A00745168 /* ViewController.swift */,
+				84A5036F1D1ACC2E00E27230 /* fonts */,
+				84A5035F1D1AC48C00E27230 /* interface */,
+				84FC323F1D1A7C4300DC49BA /* testMusic */,
 				849C7D351C95BB0A00745168 /* Main.storyboard */,
 				849C7D381C95BB0A00745168 /* Assets.xcassets */,
 				849C7D3A1C95BB0A00745168 /* LaunchScreen.storyboard */,
@@ -125,6 +173,64 @@
 			path = SimpleVKPlayerUITests;
 			sourceTree = "<group>";
 		};
+		84A5035F1D1AC48C00E27230 /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				84A503681D1AC89600E27230 /* pan.png */,
+				84A5036C1D1ACAB100E27230 /* volumePan.png */,
+			);
+			name = interface;
+			sourceTree = "<group>";
+		};
+		84A5036F1D1ACC2E00E27230 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				84A5036E1D1ACC1000E27230 /* awesome.ttf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
+		84FC323F1D1A7C4300DC49BA /* testMusic */ = {
+			isa = PBXGroup;
+			children = (
+				84FC32541D1A7D3800DC49BA /* testImg.png */,
+				84FC324A1D1A7D2D00DC49BA /* n1.mp3 */,
+				84FC324B1D1A7D2D00DC49BA /* n2.mp3 */,
+				84FC324C1D1A7D2D00DC49BA /* p1.mp3 */,
+				84FC324D1D1A7D2D00DC49BA /* pn1.mp3 */,
+				84FC324E1D1A7D2D00DC49BA /* s1.mp3 */,
+				84FC32401D1A7D2500DC49BA /* b1.mp3 */,
+				84FC32411D1A7D2500DC49BA /* b2.mp3 */,
+				84FC32421D1A7D2500DC49BA /* b3.mp3 */,
+				84FC32431D1A7D2500DC49BA /* j1.mp3 */,
+				84FC32441D1A7D2500DC49BA /* j2.mp3 */,
+			);
+			name = testMusic;
+			sourceTree = "<group>";
+		};
+		9469F6259F37FDC92FA28264 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9DF4362DE69D91F85662A59E /* Pods-SimpleVKPlayer.debug.xcconfig */,
+				B1A9D6628EEAD5E340B58956 /* Pods-SimpleVKPlayer.release.xcconfig */,
+				894763DE0EDD98DFB206EE6D /* Pods-SimpleVKPlayerTests.debug.xcconfig */,
+				F9F443ED318ADD0E430B28F4 /* Pods-SimpleVKPlayerTests.release.xcconfig */,
+				F8E56A57150C7A0617A5252A /* Pods-SimpleVKPlayerUITests.debug.xcconfig */,
+				513EF21B6A52BCF3B56D73B7 /* Pods-SimpleVKPlayerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C72268B47DF12F9B7D142528 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5D095C573620E97237760444 /* Pods_SimpleVKPlayer.framework */,
+				CA81B73895A3A29B72E5F3BC /* Pods_SimpleVKPlayerTests.framework */,
+				C7B8777E06F6DF05E94445E8 /* Pods_SimpleVKPlayerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 849C7D561C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayer" */;
 			buildPhases = (
+				7055BB55F7E6F6B2F2927F84 /* Check Pods Manifest.lock */,
 				849C7D2A1C95BB0A00745168 /* Sources */,
 				849C7D2B1C95BB0A00745168 /* Frameworks */,
 				849C7D2C1C95BB0A00745168 /* Resources */,
+				B4F6673F17A726DA097B9120 /* Embed Pods Frameworks */,
+				9AF331A21DDADE9D3C530ABB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +258,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 849C7D591C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayerTests" */;
 			buildPhases = (
+				3FC24678B21950B548C33BA8 /* Check Pods Manifest.lock */,
 				849C7D3E1C95BB0A00745168 /* Sources */,
 				849C7D3F1C95BB0A00745168 /* Frameworks */,
 				849C7D401C95BB0A00745168 /* Resources */,
+				7ED9BBB7CBE809FADC265147 /* Embed Pods Frameworks */,
+				16036728E70FD1CE2164A021 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +279,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 849C7D5C1C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayerUITests" */;
 			buildPhases = (
+				84521A482C8BB6B3589BA7B8 /* Check Pods Manifest.lock */,
 				849C7D491C95BB0A00745168 /* Sources */,
 				849C7D4A1C95BB0A00745168 /* Frameworks */,
 				849C7D4B1C95BB0A00745168 /* Resources */,
+				6544CE00AC2FDA90036ECE26 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,9 +343,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A503701D1ACCA900E27230 /* awesome.ttf in Resources */,
+				84FC32521D1A7D2D00DC49BA /* pn1.mp3 in Resources */,
+				84FC32451D1A7D2500DC49BA /* b1.mp3 in Resources */,
+				84FC32511D1A7D2D00DC49BA /* p1.mp3 in Resources */,
 				849C7D3C1C95BB0A00745168 /* LaunchScreen.storyboard in Resources */,
+				84FC32471D1A7D2500DC49BA /* b3.mp3 in Resources */,
+				84FC32531D1A7D2D00DC49BA /* s1.mp3 in Resources */,
 				849C7D391C95BB0A00745168 /* Assets.xcassets in Resources */,
+				84FC324F1D1A7D2D00DC49BA /* n1.mp3 in Resources */,
+				84A503691D1AC89600E27230 /* pan.png in Resources */,
+				84FC32551D1A7D3800DC49BA /* testImg.png in Resources */,
+				84A5036D1D1ACAB100E27230 /* volumePan.png in Resources */,
+				84FC32501D1A7D2D00DC49BA /* n2.mp3 in Resources */,
+				84FC32461D1A7D2500DC49BA /* b2.mp3 in Resources */,
+				84FC32491D1A7D2500DC49BA /* j2.mp3 in Resources */,
 				849C7D371C95BB0A00745168 /* Main.storyboard in Resources */,
+				84FC32481D1A7D2500DC49BA /* j1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +378,129 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		16036728E70FD1CE2164A021 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleVKPlayerTests/Pods-SimpleVKPlayerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FC24678B21950B548C33BA8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6544CE00AC2FDA90036ECE26 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleVKPlayerUITests/Pods-SimpleVKPlayerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7055BB55F7E6F6B2F2927F84 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7ED9BBB7CBE809FADC265147 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleVKPlayerTests/Pods-SimpleVKPlayerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84521A482C8BB6B3589BA7B8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9AF331A21DDADE9D3C530ABB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleVKPlayer/Pods-SimpleVKPlayer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4F6673F17A726DA097B9120 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SimpleVKPlayer/Pods-SimpleVKPlayer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		849C7D2A1C95BB0A00745168 /* Sources */ = {
@@ -397,28 +648,33 @@
 		};
 		849C7D571C95BB0A00745168 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DF4362DE69D91F85662A59E /* Pods-SimpleVKPlayer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SimpleVKPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YAVKplayer.SimpleVKPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		849C7D581C95BB0A00745168 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1A9D6628EEAD5E340B58956 /* Pods-SimpleVKPlayer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SimpleVKPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YAVKplayer.SimpleVKPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		849C7D5A1C95BB0A00745168 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 894763DE0EDD98DFB206EE6D /* Pods-SimpleVKPlayerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SimpleVKPlayerTests/Info.plist;
@@ -431,6 +687,7 @@
 		};
 		849C7D5B1C95BB0A00745168 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9F443ED318ADD0E430B28F4 /* Pods-SimpleVKPlayerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SimpleVKPlayerTests/Info.plist;
@@ -443,6 +700,7 @@
 		};
 		849C7D5D1C95BB0A00745168 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8E56A57150C7A0617A5252A /* Pods-SimpleVKPlayerUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SimpleVKPlayerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -454,6 +712,7 @@
 		};
 		849C7D5E1C95BB0A00745168 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 513EF21B6A52BCF3B56D73B7 /* Pods-SimpleVKPlayerUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SimpleVKPlayerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -482,6 +741,7 @@
 				849C7D581C95BB0A00745168 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849C7D591C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +750,7 @@
 				849C7D5B1C95BB0A00745168 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		849C7D5C1C95BB0A00745168 /* Build configuration list for PBXNativeTarget "SimpleVKPlayerUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +759,7 @@
 				849C7D5E1C95BB0A00745168 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
