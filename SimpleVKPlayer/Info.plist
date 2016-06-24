@@ -5,6 +5,15 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>awesome.ttf</string>
+		<string>SF-UI-Display-Black.ttf</string>
+		<string>SF-UI-Display-Bold.ttf</string>
+		<string>SF-UI-Display-Heavy.ttf</string>
+		<string>SF-UI-Display-Light.ttf</string>
+		<string>SF-UI-Display-Medium.ttf</string>
+		<string>SF-UI-Display-Regular.ttf</string>
+		<string>SF-UI-Display-Semibold.ttf</string>
+		<string>SF-UI-Display-Thin.ttf</string>
+		<string>SF-UI-Display-Ultralight.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

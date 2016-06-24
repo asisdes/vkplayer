@@ -14,7 +14,8 @@ import AVKit
 
 
 
-class ViewController: UIViewController, AVAudioPlayerDelegate {
+
+class ViewController: UIViewController, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource {
     var blurEffectExtraLight : UIBlurEffect?
     var blurViewExtraLight : UIVisualEffectView?
     
@@ -23,6 +24,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     var arrayTrack : [String]?
     var timer:NSTimer!
     var isPlaying = false
+    var isListShow = false
+    
+    var arrayTracksObjects : [TrackModel]?
+    
+    @IBOutlet weak var tableView: UITableView?
     
     @IBOutlet weak var trackLb: UILabel!
     
@@ -72,7 +78,6 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
           self.currentTrackID = self.currentTrackID! + 1
         }
         playTrack(self.arrayTrack![self.currentTrackID!])
-        
     }
     
     
@@ -96,8 +101,27 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
 
     @IBAction func actionShowPlayList(sender: UIButton) {
-        
-        print("Show Play List")
+
+        if isListShow {
+            UIView.animateWithDuration(0.5, animations: {
+                self.mainCover!.frame = CGRectMake(self.mainCover!.bounds.origin.x, self.mainCover!.bounds.origin.y,
+                                                                                self.mainCover!.bounds.size.width, self.mainCover!.bounds.size.height)
+                self.backgroundCover!.frame = CGRectMake(self.backgroundCover!.bounds.origin.x, self.backgroundCover!.bounds.origin.y,
+                    self.backgroundCover!.bounds.size.width, self.backgroundCover!.bounds.size.height)
+                
+                self.isListShow = false
+            })
+
+        } else {
+            UIView.animateWithDuration(0.5, animations: {
+                self.mainCover!.frame = CGRectMake(self.mainCover!.bounds.origin.x - self.mainCover!.bounds.size.width - 20, self.mainCover!.bounds.origin.y,
+                                                                                self.mainCover!.bounds.size.width, self.mainCover!.bounds.size.height)
+                self.backgroundCover!.frame = CGRectMake(self.backgroundCover!.bounds.origin.x - self.backgroundCover!.bounds.size.width - 20, self.backgroundCover!.bounds.origin.y,
+                    self.backgroundCover!.bounds.size.width, self.backgroundCover!.bounds.size.height)
+                self.isListShow = true
+            })
+        }
+
     }
     
     @IBAction func actionLoopTrack(sender: UIButton) {
@@ -113,15 +137,76 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func actionExitApp(sender: UIButton) {
         
         print("ExitApp")
+
+    }
+    
+    func hidePlayList() {
+        UIView.animateWithDuration(2, animations: {
+            //self.tableView!.frame = self.backgroundCover!.bounds
+        })
+    }
+    
+    
+    var tickerView:RSingleTickerView!
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.checkInternetStatus()
     }
     
     override func viewDidLoad() {
+
+
         super.viewDidLoad()
         //audioPlayer?.delegate = self
+        
         addBlur()
         customSlider()
+        hidePlayList()
 
-        self.arrayTrack = ["n1","n2","p1","pn1","s1","b1","b2","b3","j1","j2"]
+        self.arrayTrack = ["v1", "e1", "s1", "b1", "b2", "b3", "n1", "n2", "p1", "pn1", "j1", "j2"]
+        self.arrayTracksObjects = []
+        
+        
+        
+        for index in 0...(self.arrayTrack!.count - 1)  {
+            
+            //print(index)
+            
+            let audioFilePath = NSBundle.mainBundle().pathForResource(self.arrayTrack![index], ofType: "mp3")
+            if audioFilePath != nil {
+                ///print("Audio Good")
+                
+                let audioFileUrl = NSURL.fileURLWithPath(audioFilePath!)
+                let playerItem = AVPlayerItem(URL: audioFileUrl)
+                let metadataList = playerItem.asset.metadata
+
+                var title = ""
+
+                let asset = AVURLAsset(URL: NSURL(fileURLWithPath: audioFilePath!), options: nil)
+                let audioDuration = asset.duration
+    
+                let audioDurationSeconds = CMTimeGetSeconds(audioDuration)
+                
+                
+                for item in metadataList {
+                    if item.commonKey == nil{
+                        continue
+                    }
+                    if let key = item.commonKey, let value = item.value {
+                        if key == "title" {
+                            title = (value as? String)!
+                        }
+                    }
+                    
+                }
+                let track = TrackModel(trackTitle: title, trackTime: self.getTimer(Int(audioDurationSeconds)))
+                self.arrayTracksObjects?.append(track)
+            }
+            
+  
+        }
+
         
         if self.currentTrackID == nil {
             self.currentTrackID = 0
@@ -130,8 +215,25 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         
 
     }
+    
+    func getTimer(time : Int) -> String {
+        let minutes = time / 60
+        let seconds = time - (minutes * 60)
+
+        let min = convertDigitals(minutes)
+        let sec = convertDigitals(seconds)
+ 
+        return "\(min):\(sec)"
+    }
 
     func playTrack(track : String) {
+        
+        self.checkInternetStatus()
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView!.reloadData()
+        })
+        
         let audioFilePath = NSBundle.mainBundle().pathForResource(track, ofType: "mp3")
         if audioFilePath != nil {
             let audioFileUrl = NSURL.fileURLWithPath(audioFilePath!)
@@ -143,6 +245,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             let playerItem = AVPlayerItem(URL: audioFileUrl)
             let metadataList = playerItem.asset.metadata
             getMetaData(metadataList)
+            //print(metadataList)
             self.btPlay.setTitle("\u{f28d}", forState: UIControlState.Normal)
             self.startTimer()
 
@@ -166,6 +269,12 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     
     func getMetaData(metadataList : [AVMetadataItem]) {
         
+        self.mainCover!.image = UIImage(named: "emptyCover")
+        self.backgroundCover!.image = UIImage(named: "emptyCover")
+        
+        self.trackLb.text = "Track"
+        self.artistLb.text = "Artist"
+        
         for item in metadataList {
             
             guard let key = item.commonKey, let value = item.value else{
@@ -175,9 +284,10 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
             case "title" : self.trackLb.text = value as? String
             case "artist": self.artistLb.text = value as? String
             case "artwork" where value is NSData :
+
                   self.mainCover!.image = UIImage(data: value as! NSData)
                   self.backgroundCover!.image = UIImage(data: value as! NSData)
-                
+
             default:
                 continue
             }
@@ -192,7 +302,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         blurViewExtraLight = UIVisualEffectView(effect: blurEffectExtraLight)
         blurViewExtraLight!.frame = (self.backgroundCover?.bounds)!
         blurViewExtraLight?.alpha = 0.4
-        blurViewExtraLight?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        //blurViewExtraLight?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.backgroundCover!.addSubview(blurViewExtraLight!)
     }
     
@@ -265,9 +375,96 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.Default
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.arrayTrack!.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        let cellIdentifier = "Cell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! myCell
+        
+        
+        
+        //cell.cellType.text = arr[indexPath.row].type
+        //cell.cellImage.image = UIImage(named: arr[indexPath.row].image)
+        //cell.cellImage.layer.cornerRadius = cell.cellImage.frame.size.height / 2
+        //cell.cellImage.clipsToBounds = true
+        if self.currentTrackID! == indexPath.row {
+           cell.backgroundColor = UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) /* #ffbf00 */
+           
+           //cell.cellTrackName.text = self.arrayTrack![indexPath.row]  //self.playingTrackTitle(self.arrayTrack![indexPath.row])
+           cell.cellTrackName.text = self.arrayTracksObjects![indexPath.row].trackTitle
+            cell.cellTrackName.addImage("iconPlay.png")
+            cell.timePlay.text = self.arrayTracksObjects![indexPath.row].trackTime
+
+        } else {
+           cell.backgroundColor = UIColor(red: 256/256, green: 256/256, blue: 256/256, alpha: 1.0)
+           //cell.cellTrackName.text = self.arrayTrack![indexPath.row]
+            cell.cellTrackName.text = self.arrayTracksObjects![indexPath.row].trackTitle
+            cell.timePlay.text = self.arrayTracksObjects![indexPath.row].trackTime
+        }
+        
+        return cell
+
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.currentTrackID! = indexPath.row
+        playTrack(self.arrayTrack![self.currentTrackID!])
+    }
+    
+    func checkInternetStatus() {
+        if Reachability.isConnectedToNetwork() == true {
+            
+        } else {
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ConnectInternet") as! ConnectInternet
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
+    }
+    
+ 
+    
+}
+
+extension UILabel
+{
+    func addImage(imageName: String, afterLabel bolAfterLabel: Bool = false)
+    {
+        let attachment: NSTextAttachment = NSTextAttachment()
+        attachment.image = UIImage(named: imageName)
+        let attachmentString: NSAttributedString = NSAttributedString(attachment: attachment)
+        
+        if (bolAfterLabel)
+        {
+            let strLabelText: NSMutableAttributedString = NSMutableAttributedString(string: self.text!)
+            strLabelText.appendAttributedString(attachmentString)
+            
+            self.attributedText = strLabelText
+        }
+        else
+        {
+            let strLabelText: NSAttributedString = NSAttributedString(string: self.text!)
+            let mutableAttachmentString: NSMutableAttributedString = NSMutableAttributedString(attributedString: attachmentString)
+            mutableAttachmentString.appendAttributedString(strLabelText)
+            
+            self.attributedText = mutableAttachmentString
+        }
+    }
+    
+    func removeImage()
+    {
+        let text = self.text
+        self.attributedText = nil
+        self.text = text
+    }
 }
 
 
