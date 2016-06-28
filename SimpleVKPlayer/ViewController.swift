@@ -8,25 +8,45 @@
 
 import UIKit
 import AVFoundation
-import MediaPlayer
+
 import AVKit
+import VK_ios_sdk
+enum AudioMode {
+    
+    case Repeat
+    case Random
+    case Normal
+}
 
 
+enum StateTrack {
+    case STKAudioPlayerStateReady
+    case STKAudioPlayerStateRunning
+    case STKAudioPlayerStatePlaying
+    case STKAudioPlayerStateBuffering
+    case STKAudioPlayerStatePaused
+    case STKAudioPlayerStateStopped
+    case STKAudioPlayerStateError
+    case STKAudioPlayerStateDisposed
+}
 
-
-
-class ViewController: UIViewController, AVAudioPlayerDelegate, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, STKAudioPlayerDelegate {
+    
     var blurEffectExtraLight : UIBlurEffect?
     var blurViewExtraLight : UIVisualEffectView?
     
-    var audioPlayer : AVAudioPlayer?
+    var AudioModeStatus : AudioMode = .Normal
+    
+    var AudioPlayer : STKAudioPlayer!
+    
     var currentTrackID : Int?
     var arrayTrack : [String]?
     var timer:NSTimer!
+    
     var isPlaying = false
     var isListShow = false
-    
-    var arrayTracksObjects : [TrackModel]?
+    var allMusicCount = 0
+    var arrayTracksObjects = [TrackModel]()
     
     @IBOutlet weak var tableView: UITableView?
     
@@ -51,322 +71,331 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITableViewDelega
     @IBOutlet weak var volumeScroll: UISlider!
     
     @IBOutlet weak var mainCover: UIImageView?
-    @IBOutlet weak var backgroundCover: UIImageView?
+
     
     @IBAction func play(sender: UIButton) {
-        if audioPlayer!.playing {
- 
-            self.btPlay.setTitle("\u{f144}", forState: UIControlState.Normal)
-            audioPlayer!.stop()
-            isPlaying = false
-            timer.invalidate()
-            timer = nil
-        } else {
-            self.btPlay.setTitle("\u{f28d}", forState: UIControlState.Normal)
-            audioPlayer!.play()
-            isPlaying = true
-            self.startTimer()
+        
+        if self.AudioPlayer == nil
+        {
+            return
+        }
+
+        if self.AudioPlayer.state.rawValue == 9
+        {
+            self.AudioPlayer.resume()
+        }
+        else
+        {
+            self.AudioPlayer.pause()
         }
     }
     
     
     @IBAction func next(sender: UIButton) {
-        
-        if (self.currentTrackID!  == ((self.arrayTrack?.count)! - 1)) {
-          self.currentTrackID = 0
+        if self.currentTrackID == self.arrayTracksObjects.count - 1 {
+            self.currentTrackID = 0
+            self.playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
         } else {
-          self.currentTrackID = self.currentTrackID! + 1
+            self.currentTrackID = self.currentTrackID! + 1
+            self.playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
         }
-        playTrack(self.arrayTrack![self.currentTrackID!])
     }
     
     
     @IBAction func previus(sender: UIButton) {
-        if ( self.currentTrackID  == 0) {
-            self.currentTrackID = (self.arrayTrack?.count)! - 1
+        if self.currentTrackID == 0  {
+            self.currentTrackID = self.arrayTracksObjects.count - 1
+            self.playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
         } else {
             self.currentTrackID = self.currentTrackID! - 1
+            self.playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
         }
-        playTrack(self.arrayTrack![self.currentTrackID!])
-        
     }
     
     @IBAction func scrollVolumeChanged(sender: UISlider) {
-        audioPlayer!.volume = sender.value
+        //print("Volume Scroll \(sender.value)")
+        self.AudioPlayer.volume = sender.value
     }
     
     @IBAction func scrollTimeTrack(sender: UISlider) {
-         let detectFutureTime = Double(sender.value) * audioPlayer!.duration
-         audioPlayer!.currentTime = detectFutureTime
+         let detectFutureTime = Double(sender.value) * AudioPlayer.duration
+         AudioPlayer!.seekToTime(detectFutureTime)
     }
 
     @IBAction func actionShowPlayList(sender: UIButton) {
-
         if isListShow {
             UIView.animateWithDuration(0.5, animations: {
                 self.mainCover!.frame = CGRectMake(self.mainCover!.bounds.origin.x, self.mainCover!.bounds.origin.y,
                                                                                 self.mainCover!.bounds.size.width, self.mainCover!.bounds.size.height)
-                self.backgroundCover!.frame = CGRectMake(self.backgroundCover!.bounds.origin.x, self.backgroundCover!.bounds.origin.y,
-                    self.backgroundCover!.bounds.size.width, self.backgroundCover!.bounds.size.height)
+
                 
                 self.isListShow = false
+                self.showPlayList.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0), forState: .Normal)
             })
 
         } else {
             UIView.animateWithDuration(0.5, animations: {
-                self.mainCover!.frame = CGRectMake(self.mainCover!.bounds.origin.x - self.mainCover!.bounds.size.width - 20, self.mainCover!.bounds.origin.y,
+                self.mainCover!.frame = CGRectMake(self.mainCover!.bounds.origin.x, self.mainCover!.bounds.origin.y  - self.mainCover!.bounds.size.height - 20,
                                                                                 self.mainCover!.bounds.size.width, self.mainCover!.bounds.size.height)
-                self.backgroundCover!.frame = CGRectMake(self.backgroundCover!.bounds.origin.x - self.backgroundCover!.bounds.size.width - 20, self.backgroundCover!.bounds.origin.y,
-                    self.backgroundCover!.bounds.size.width, self.backgroundCover!.bounds.size.height)
+
                 self.isListShow = true
+                self.showPlayList.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0), forState: .Normal)
             })
         }
-
     }
     
     @IBAction func actionLoopTrack(sender: UIButton) {
-        
         print("Loop Track")
+        
+        if self.AudioModeStatus == .Repeat {
+           self.AudioModeStatus = .Normal
+        } else {
+           self.AudioModeStatus = .Repeat
+        }
+        upadetBtn()
     }
     
     @IBAction func actionPlayRandom(sender: UIButton) {
+        if self.AudioModeStatus == .Random {
+            self.AudioModeStatus = .Normal
+        } else {
+            self.AudioModeStatus = .Random
+        }
+        upadetBtn()
+    }
+    
+    func upadetBtn(){
+        switch self.AudioModeStatus {
+            case .Normal : print("Normal")
+            
+            playRandom.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            playLoop.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            //showPlayList.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            
+            case .Repeat : print("Repeat")
+            playRandom.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            playLoop.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            //showPlayList.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
         
-        print("Random Play")
+            case .Random : print("Random")
+            playRandom.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            playLoop.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            //showPlayList.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+        }
+        
+    
     }
     
     @IBAction func actionExitApp(sender: UIButton) {
         
+        //self.AudioPlayer.stop()
+        self.AudioPlayer.clearQueue()
+        timer?.invalidate()
+        
         print("ExitApp")
-
+        VKSdk.forceLogout()
+        let isLogged = VKSdk.isLoggedIn()
+        if isLogged == true {
+            print("Пользователь авторизован")
+        } else if isLogged == false {
+            print("Пользователь не авторизован")
+            let VC1 = self.storyboard!.instantiateViewControllerWithIdentifier("LoginForm") as! LoginForm
+            self.navigationController!.pushViewController(VC1, animated: true)
+        }
     }
     
-    func hidePlayList() {
-        UIView.animateWithDuration(2, animations: {
-            //self.tableView!.frame = self.backgroundCover!.bounds
-        })
-    }
-    
-    
-    var tickerView:RSingleTickerView!
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.checkInternetStatus()
-    }
     
     override func viewDidLoad() {
-
-
+        
         super.viewDidLoad()
-        //audioPlayer?.delegate = self
-        
-        addBlur()
         customSlider()
-        hidePlayList()
+        getMusic()
 
-        self.arrayTrack = ["v1", "e1", "s1", "b1", "b2", "b3", "n1", "n2", "p1", "pn1", "j1", "j2"]
-        self.arrayTracksObjects = []
+        self.AudioPlayer = STKAudioPlayer()
+        self.AudioPlayer.volume = 0.5
+        self.AudioPlayer.equalizerEnabled = true
         
+        self.AudioPlayer.delegate = self
+        self.currentTrackID = 0
         
+        self.showPlayList.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0), forState: .Normal)
         
-        for index in 0...(self.arrayTrack!.count - 1)  {
-            
-            //print(index)
-            
-            let audioFilePath = NSBundle.mainBundle().pathForResource(self.arrayTrack![index], ofType: "mp3")
-            if audioFilePath != nil {
-                ///print("Audio Good")
-                
-                let audioFileUrl = NSURL.fileURLWithPath(audioFilePath!)
-                let playerItem = AVPlayerItem(URL: audioFileUrl)
-                let metadataList = playerItem.asset.metadata
-
-                var title = ""
-
-                let asset = AVURLAsset(URL: NSURL(fileURLWithPath: audioFilePath!), options: nil)
-                let audioDuration = asset.duration
-    
-                let audioDurationSeconds = CMTimeGetSeconds(audioDuration)
-                
-                
-                for item in metadataList {
-                    if item.commonKey == nil{
-                        continue
-                    }
-                    if let key = item.commonKey, let value = item.value {
-                        if key == "title" {
-                            title = (value as? String)!
-                        }
-                    }
-                    
-                }
-                let track = TrackModel(trackTitle: title, trackTime: self.getTimer(Int(audioDurationSeconds)))
-                self.arrayTracksObjects?.append(track)
-            }
-            
-  
-        }
-
-        
-        if self.currentTrackID == nil {
-            self.currentTrackID = 0
-            playTrack(arrayTrack![self.currentTrackID!])
-        }
-        
-
     }
-    
-    func getTimer(time : Int) -> String {
-        let minutes = time / 60
-        let seconds = time - (minutes * 60)
-
-        let min = convertDigitals(minutes)
-        let sec = convertDigitals(seconds)
  
-        return "\(min):\(sec)"
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //self.checkInternetStatus()
     }
 
-    func playTrack(track : String) {
-        
-        self.checkInternetStatus()
-        
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.tableView!.reloadData()
-        })
-        
-        let audioFilePath = NSBundle.mainBundle().pathForResource(track, ofType: "mp3")
-        if audioFilePath != nil {
-            let audioFileUrl = NSURL.fileURLWithPath(audioFilePath!)
-            try! audioPlayer = AVAudioPlayer(contentsOfURL: audioFileUrl)
-            audioPlayer!.delegate = self
-            audioPlayer!.prepareToPlay()
-            audioPlayer!.volume = 0.5
-            audioPlayer!.play()
-            let playerItem = AVPlayerItem(URL: audioFileUrl)
-            let metadataList = playerItem.asset.metadata
-            getMetaData(metadataList)
-            //print(metadataList)
-            self.btPlay.setTitle("\u{f28d}", forState: UIControlState.Normal)
-            self.startTimer()
+    func startTimer(){
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.updateViewsWithTimer(_:)), userInfo: nil, repeats: true)
+    }
+    func updateViewsWithTimer(theTimer: NSTimer){
+        self.updateViews()
+    }
+    
+    func updateViews() {
+        self.timerScroll.value = Float(self.AudioPlayer.progress / self.AudioPlayer.duration)
 
-        } else {
-            print("audio file is not found")
-        }
-    }
-    
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        print("Finish")
-        
-        if (self.currentTrackID!  == ((self.arrayTrack?.count)! - 1)) {
-            self.currentTrackID = 0
-        } else {
-            self.currentTrackID = self.currentTrackID! + 1
-        }
-        playTrack(self.arrayTrack![self.currentTrackID!])
-
-    }
-    
-    
-    func getMetaData(metadataList : [AVMetadataItem]) {
-        
-        self.mainCover!.image = UIImage(named: "emptyCover")
-        self.backgroundCover!.image = UIImage(named: "emptyCover")
-        
-        self.trackLb.text = "Track"
-        self.artistLb.text = "Artist"
-        
-        for item in metadataList {
-            
-            guard let key = item.commonKey, let value = item.value else{
-                continue
-            }
-            switch key {
-            case "title" : self.trackLb.text = value as? String
-            case "artist": self.artistLb.text = value as? String
-            case "artwork" where value is NSData :
-
-                  self.mainCover!.image = UIImage(data: value as! NSData)
-                  self.backgroundCover!.image = UIImage(data: value as! NSData)
-
-            default:
-                continue
-            }
-        }
-    
-    }
-    
-    
-    
-    func addBlur() {
-        blurEffectExtraLight = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
-        blurViewExtraLight = UIVisualEffectView(effect: blurEffectExtraLight)
-        blurViewExtraLight!.frame = (self.backgroundCover?.bounds)!
-        blurViewExtraLight?.alpha = 0.4
-        //blurViewExtraLight?.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        self.backgroundCover!.addSubview(blurViewExtraLight!)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func updateTime() {
-        let currentTime = Int(self.audioPlayer!.currentTime)
-        let duration = Int(self.audioPlayer!.duration)
+        let currentTime = Int(self.AudioPlayer.progress)
+        let duration = Int(self.AudioPlayer.duration)
         let total = currentTime - duration
-        
-        let minutes = currentTime / 60
-        let seconds = currentTime - (minutes * 60)
         
         let totalMinutes = -1 * (total / 60)
         let totalSeconds = (-1 * total) - (totalMinutes * 60)
         
-        let min = convertDigitals(minutes)
-        let sec = convertDigitals(seconds)
+        let seconds = Int(currentTime) % 60
+        let minutes = (Int(currentTime) / 60) % 60
         
-        let minTotal = convertDigitals(totalMinutes)
-        let secTotal = convertDigitals(totalSeconds)
-
-        self.startTime.text = "\(min):\(sec) "
-        self.endTime.text = "-"+"\(minTotal):\(secTotal) "
+        self.startTime.text = String(format: "%0.2d:%0.2d", minutes, seconds)
+        self.endTime.text = String(format: "-%0.2d:%0.2d", totalMinutes, totalSeconds)
+        //print("timer is work")
+    }
         
-        //print(self.audioPlayer!.currentTime)
-        //print(self.audioPlayer!.duration)
-        
-        let tim = (self.audioPlayer!.currentTime * 1) / self.audioPlayer!.duration
-        self.timerScroll.value = Float(tim)
-        //print("Timer Work")
-     
+    func getTimer (time : Int) -> String  {
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        return String(format: "%0.2d:%0.2d", minutes, seconds)
     }
     
-    func convertDigitals(digital : Int) ->String {
-        var str = ""
-        if digital < 10 {
-            str = "0\(digital)"
-        } else {
-            str = "\(digital)"
+    
+    func getMusic(offset : Int = 0) {
+        
+        let audioReq : VKRequest = VKRequest(method: "audio.get", parameters:  ["owner_id": VKSdk.accessToken().userId, "count":"50", "offset" : offset])
+        audioReq.executeWithResultBlock(
+            {
+                (response) -> () in
+                var tempArray = [TrackModel]()
+                let audios =  response.json as! NSDictionary
+                
+                let audiosCount = audios["count"]!
+                self.allMusicCount = Int(audiosCount as! NSNumber)
+                
+                
+                let tracks = audios["items"] as! NSArray
+                for index in 0...tracks.count - 1 {
+                    let firstTrack = tracks[index]
+                    let firstTrackAuthor = firstTrack["artist"]! as! String
+                    let firstTrackName = firstTrack["title"]!  as! String
+                    let firstTrackDuration = self.getTimer(firstTrack["duration"]! as! Int)
+                    let firstTrackUrl = firstTrack["url"]! as! String
+
+                    let track = TrackModel(trackTitle: firstTrackName, trackTime: firstTrackDuration, trackUrl: firstTrackUrl, trackArtist: firstTrackAuthor)
+                    tempArray.append(track)
+                }
+                self.arrayTracksObjects.appendContentsOf(tempArray)
+                
+                
+                self.tableView?.reloadData()
+            }, errorBlock: {
+                (error) -> () in
+                print(error)
+                
+        })
+    }
+    
+    
+
+    
+
+    func playTrack(track : String?) {
+        self.checkInternetStatus()
+
+        AudioPlayer.play(track!)
+
+        //self.getMetaData(track!)
+
+        self.trackLb.text = self.arrayTracksObjects[self.currentTrackID!].trackTitle!.truncate(20)
+        self.artistLb.text = self.arrayTracksObjects[self.currentTrackID!].trackArtist!.truncate(20)
+        
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView!.reloadData()
+        })
+    }
+    
+    func getMetaData(track : String) {
+        
+        self.mainCover!.image = UIImage(named: "emptyCover")
+        self.trackLb.text = "Track"
+        self.artistLb.text = "Artist"
+        
+ 
+    }
+
+    
+    func audioPlayer(audioPlayer: STKAudioPlayer, didFinishBufferingSourceWithQueueItemId queueItemId: NSObject) {
+        //print("didFinishBufferingSourceWithQueueItemId")
+    }
+    
+    func audioPlayer(audioPlayer: STKAudioPlayer, didFinishPlayingQueueItemId queueItemId: NSObject, withReason stopReason: STKAudioPlayerStopReason, andProgress progress: Double, andDuration duration: Double) {
+        print("didFinishPlayingQueueItemId")
+        
+        if self.AudioPlayer.state.rawValue == 16 {
+        
+        switch self.AudioModeStatus {
+        case .Normal :
+            
+            if (self.arrayTracksObjects.count - 1 == self.currentTrackID) {
+                 self.currentTrackID = 0
+                 playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
+            } else {
+                 self.currentTrackID = self.currentTrackID! + 1
+                 playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
+            }
+            
+            
+            case .Repeat : playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
+            case .Random :
+                
+                let k: Int = random() % (self.arrayTracksObjects.count - 1);
+                self.currentTrackID = k;
+                playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!);
+         
         }
-        return str
-    }
-    
-    
-    func startTimer() {
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.updateTime), userInfo: nil, repeats: true)
-    }
-    
-    func customSlider () {
+        }
 
         
-        timerScroll.minimumTrackTintColor = UIColor(red: 0/255, green: 80/255, blue: 255/255, alpha: 1.0) /* #0050ff */
-        //timerScroll.backgroundColor = UIColor.redColor()
-        timerScroll.maximumTrackTintColor = UIColor.whiteColor()
+    }
+    
+    func audioPlayer(audioPlayer: STKAudioPlayer, unexpectedError errorCode: STKAudioPlayerErrorCode) {
+        //print("unexpectedError")
+    }
+    
+    func audioPlayer(audioPlayer: STKAudioPlayer, didStartPlayingQueueItemId queueItemId: NSObject) {
+        //print("didStartPlayingQueueItemId")
+    }
+    
+    func audioPlayer(audioPlayer: STKAudioPlayer, logInfo line: String) {
+        //print("logInfo")
+    }
+    
+    func audioPlayer(audioPlayer: STKAudioPlayer, didCancelQueuedItems queuedItems: [AnyObject]) {
+        //print("didCancelQueuedItems")
+    }
+    
+    func audioPlayer(audioPlayer: STKAudioPlayer, stateChanged state: STKAudioPlayerState, previousState: STKAudioPlayerState) {
+        switch state.rawValue {
+            case 3 : timer?.invalidate(); self.startTimer(); btPlay.setTitle("\u{f28d}", forState: .Normal); self.tableView?.reloadData(); //print("play");
+            case 9 : timer?.invalidate(); btPlay.setTitle("\u{f144}", forState: .Normal); self.tableView?.reloadData(); // print("pause");
+            case 16 : timer?.invalidate(); btPlay.setTitle("\u{f144}", forState: .Normal); self.tableView?.reloadData(); // print("stop");
+            case 5 : print("");
+            default : break
+        }
+        print(state)
+    }
+ 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
+    func customSlider() {
+        timerScroll.minimumTrackTintColor = UIColor(red: 0/255, green: 80/255, blue: 255/255, alpha: 1.0) /* #0050ff */
+        timerScroll.maximumTrackTintColor = UIColor.whiteColor()
         timerScroll.setThumbImage(UIImage(named: "pan")!, forState: .Normal)
 
         volumeScroll.maximumTrackTintColor = UIColor(red: 239/255, green: 239/255, blue: 239/255, alpha: 1.0) /* #efefef */
         volumeScroll.minimumTrackTintColor = UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1.0) /* #191919 */
-        
         volumeScroll.setThumbImage(UIImage(named: "volumePan")!, forState: .Normal)
     }
     
@@ -383,55 +412,73 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrayTrack!.count
+        return self.arrayTracksObjects.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! myCell
-        
-        
-        
-        //cell.cellType.text = arr[indexPath.row].type
-        //cell.cellImage.image = UIImage(named: arr[indexPath.row].image)
-        //cell.cellImage.layer.cornerRadius = cell.cellImage.frame.size.height / 2
-        //cell.cellImage.clipsToBounds = true
+
         if self.currentTrackID! == indexPath.row {
-           cell.backgroundColor = UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) /* #ffbf00 */
-           
-           //cell.cellTrackName.text = self.arrayTrack![indexPath.row]  //self.playingTrackTitle(self.arrayTrack![indexPath.row])
-           cell.cellTrackName.text = self.arrayTracksObjects![indexPath.row].trackTitle
-            cell.cellTrackName.addImage("iconPlay.png")
-            cell.timePlay.text = self.arrayTracksObjects![indexPath.row].trackTime
+            cell.backgroundColor = UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) /* #ffbf00 */
+
+            cell.cellTrackName.text = self.arrayTracksObjects[indexPath.row].trackTitle!.truncate(30, trailing: "...")
+            if self.AudioPlayer.state.rawValue == 3  || self.AudioPlayer.state.rawValue == 5 {
+                cell.cellTrackName.addImage("iconPlay.png")
+            } else {
+                cell.cellTrackName.addImage("iconStop.png")
+            }
+            cell.timePlay.text = self.arrayTracksObjects[indexPath.row].trackTime
 
         } else {
            cell.backgroundColor = UIColor(red: 256/256, green: 256/256, blue: 256/256, alpha: 1.0)
-           //cell.cellTrackName.text = self.arrayTrack![indexPath.row]
-            cell.cellTrackName.text = self.arrayTracksObjects![indexPath.row].trackTitle
-            cell.timePlay.text = self.arrayTracksObjects![indexPath.row].trackTime
+           cell.cellTrackName.text = self.arrayTracksObjects[indexPath.row].trackTitle!.truncate(30, trailing: "...")
+           cell.timePlay.text = self.arrayTracksObjects[indexPath.row].trackTime
         }
         
+        
+        if (indexPath.row == self.arrayTracksObjects.count - 1) && (allMusicCount != self.arrayTracksObjects.count - 1) {
+            print("Вы в конце таблицы")
+            self.getMusic(self.arrayTracksObjects.count - 1)
+        }
         return cell
 
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentTrackID! = indexPath.row
-        playTrack(self.arrayTrack![self.currentTrackID!])
+        playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
+        //self.tableView?.reloadData()
     }
     
     func checkInternetStatus() {
         if Reachability.isConnectedToNetwork() == true {
-            
+            //print("Интернет есть все хорошо!")
         } else {
             let vc = self.storyboard?.instantiateViewControllerWithIdentifier("ConnectInternet") as! ConnectInternet
             self.presentViewController(vc, animated: true, completion: nil)
         }
     }
     
- 
+
     
+}
+
+
+extension String {
+    /// Truncates the string to length number of characters and
+    /// appends optional trailing string if longer
+    func truncate(length: Int, trailing: String? = nil) -> String {
+        if self.characters.count  > length {
+            
+            let index = self.startIndex.advancedBy(length)
+            
+            return self.substringToIndex(index) + (trailing ?? "")
+        } else {
+            return self
+        }
+    }
 }
 
 extension UILabel

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="upK-uH-yVG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -69,10 +69,7 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="xyp-QV-wep"/>
                                         </connections>
                                     </tableView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="320" verticalHuggingPriority="320" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WD8-92-Coy">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6v5-CZ-AE6">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyCover.png" translatesAutoresizingMaskIntoConstraints="NO" id="6v5-CZ-AE6">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQc-fI-mD5">
@@ -207,7 +204,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="artistLb" destination="6Yx-My-ipJ" id="eKg-ab-2ga"/>
-                        <outlet property="backgroundCover" destination="WD8-92-Coy" id="Gvm-sa-UMW"/>
                         <outlet property="btNext" destination="jYz-KH-dsO" id="fGA-df-XTU"/>
                         <outlet property="btPlay" destination="ZgN-Tt-zyH" id="H8u-KZ-lTP"/>
                         <outlet property="btPrev" destination="qje-XD-rrD" id="dAc-p3-1hr"/>
@@ -226,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368" y="366"/>
+            <point key="canvasLocation" x="1023" y="-310"/>
         </scene>
         <!--Connect Internet-->
         <scene sceneID="HHz-Yh-KeO">
@@ -240,28 +236,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Нет интернета" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2da-u5-GCy">
-                                <rect key="frame" x="47" y="185" width="225" height="80"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="warning.png" translatesAutoresizingMaskIntoConstraints="NO" id="l8B-tt-pLZ">
+                                <rect key="frame" x="60" y="108" width="200" height="200"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fN5-nQ-7sb">
-                                <rect key="frame" x="72" y="366" width="177" height="48"/>
-                                <color key="backgroundColor" red="0.99215686270000003" green="0.69803921570000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Повтор"/>
+                                <rect key="frame" x="68" y="349" width="199" height="54"/>
+                                <color key="backgroundColor" red="0.00013578765691273553" green="0.70629949090512822" blue="0.13925203658324095" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="21"/>
+                                <state key="normal" title="Повтор">
+                                    <color key="titleColor" red="0.95370295729999999" green="0.99907741189999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="actionRefreshBtn:" destination="VOq-Tq-QSE" eventType="touchUpInside" id="VFu-QK-uwj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgR-NX-piD">
-                                <rect key="frame" x="72" y="422" width="177" height="48"/>
-                                <color key="backgroundColor" red="0.99215686270000003" green="0.69803921570000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Закрыть"/>
+                                <rect key="frame" x="106" y="416" width="123" height="44"/>
+                                <color key="backgroundColor" red="0.88921215116153851" green="0.0" blue="0.10764275800313219" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Закрыть">
+                                    <color key="titleColor" red="0.95370295729999999" green="0.99907741189999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="actionCloseBtn:" destination="VOq-Tq-QSE" eventType="touchUpInside" id="Exq-sv-jzf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Нет интернета" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2da-u5-GCy">
+                                <rect key="frame" x="48" y="238" width="225" height="80"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="27"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -273,7 +278,65 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rdy-6j-oLh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="726" y="366"/>
+            <point key="canvasLocation" x="1357" y="-310"/>
+        </scene>
+        <!--Login Form-->
+        <scene sceneID="Hiw-9Y-NBF">
+            <objects>
+                <viewController storyboardIdentifier="LoginForm" id="kvh-e5-w0e" customClass="LoginForm" customModule="SimpleVKPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lix-su-qgp"/>
+                        <viewControllerLayoutGuide type="bottom" id="goh-BJ-qZi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XDF-R2-ZWf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwe-Pe-UL8">
+                                <rect key="frame" x="108" y="266" width="105" height="35"/>
+                                <color key="backgroundColor" red="0.0010301034735026226" green="0.62990785256410264" blue="0.057701062714989565" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Вход">
+                                    <color key="titleColor" red="0.96826995059999998" green="0.97264910130000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logInBtn:" destination="kvh-e5-w0e" eventType="touchUpInside" id="gIf-44-uhJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5rE-Wj-Hq2"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="logInBtn" destination="gwe-Pe-UL8" id="QBI-yV-CCV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S4h-WN-Ir2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="653" y="-310"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cKm-rU-0Gz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="upK-uH-yVG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aJz-sZ-wcf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kvh-e5-w0e" kind="relationship" relationship="rootViewController" id="aKj-aT-vCj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G6z-rP-NRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244" y="-310"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="emptyCover.png" width="320" height="320"/>
+        <image name="warning.png" width="320" height="320"/>
+    </resources>
 </document>

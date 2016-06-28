@@ -8,16 +8,18 @@
 
 import UIKit
 
-    class TrackModel {
-        
+class TrackModel {  
         var trackTitle : String?
         var trackTime : String?
+        var trackUrl : String?
+        var trackArtist : String?
     
-        init(trackTitle : String, trackTime : String) {
+        init(trackTitle : String, trackTime : String, trackUrl : String, trackArtist : String) {
           self.trackTitle = trackTitle
           self.trackTime = trackTime
+          self.trackUrl = trackUrl
+          self.trackArtist = trackArtist
         }
-    
-    }
+}
 
 

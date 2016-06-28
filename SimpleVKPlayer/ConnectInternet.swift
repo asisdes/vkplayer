@@ -1,4 +1,10 @@
 import UIKit
+import VK_ios_sdk
+
+
+
+
+
 
 class ConnectInternet: UIViewController {
     
@@ -24,14 +30,14 @@ class ConnectInternet: UIViewController {
         //refreshBtn.backgroundColor = UIColor.clearColor()
         refreshBtn.layer.cornerRadius = 5
         //refreshBtn.layer.borderWidth = 1
-        closeBtn.layer.backgroundColor = UIColor.greenColor().CGColor
+        refreshBtn.layer.backgroundColor = UIColor(red: 32/255, green: 175/255, blue: 0/255, alpha: 1.0).CGColor
         
         
         //closeBtn.backgroundColor = UIColor.clearColor()
         closeBtn.layer.cornerRadius = 5
         //closeBtn.layer.borderWidth = 1
         //closeBtn.layer.borderColor = UIColor.redColor().CGColor
-        closeBtn.layer.backgroundColor = UIColor.redColor().CGColor
+        closeBtn.layer.backgroundColor = UIColor(red: 204/255, green: 0/255, blue: 0/255, alpha: 1.0).CGColor
     }
     
     
@@ -51,6 +57,8 @@ class ConnectInternet: UIViewController {
             self.presentViewController(vc, animated: true, completion: nil)
             
         } else {
+            
+            
             
         }
     }
