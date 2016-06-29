@@ -20,6 +20,7 @@ class myCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+        self.backgroundColor = UIColor(red: 243/255, green: 40/255, blue: 100/255, alpha: 1.0)
         // Configure the view for the selected state
     }
     

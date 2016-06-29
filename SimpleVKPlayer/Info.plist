@@ -60,6 +60,10 @@
 		<string>SF-UI-Display-Semibold.ttf</string>
 		<string>SF-UI-Display-Thin.ttf</string>
 		<string>SF-UI-Display-Ultralight.ttf</string>
+		<string>DS-DIGI.TTF</string>
+		<string>DS-DIGIB.TTF</string>
+		<string>DS-DIGII.TTF</string>
+		<string>DS-DIGIT.TTF</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

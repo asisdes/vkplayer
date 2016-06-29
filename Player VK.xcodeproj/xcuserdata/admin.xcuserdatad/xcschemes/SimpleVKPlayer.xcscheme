@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "849C7D2D1C95BB0A00745168"
-               BuildableName = "SimpleVKPlayer.app"
-               BlueprintName = "SimpleVKPlayer"
-               ReferencedContainer = "container:SimpleVKPlayer.xcodeproj">
+               BuildableName = "Player VK.app"
+               BlueprintName = "Player VK"
+               ReferencedContainer = "container:Player VK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "849C7D411C95BB0A00745168"
-               BuildableName = "SimpleVKPlayerTests.xctest"
-               BlueprintName = "SimpleVKPlayerTests"
-               ReferencedContainer = "container:SimpleVKPlayer.xcodeproj">
+               BuildableName = "Player VK.xctest"
+               BlueprintName = "Player VKTests"
+               ReferencedContainer = "container:Player VK.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "849C7D4C1C95BB0A00745168"
-               BuildableName = "SimpleVKPlayerUITests.xctest"
-               BlueprintName = "SimpleVKPlayerUITests"
-               ReferencedContainer = "container:SimpleVKPlayer.xcodeproj">
+               BuildableName = "Player VK.xctest"
+               BlueprintName = "Player VKUITests"
+               ReferencedContainer = "container:Player VK.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "849C7D2D1C95BB0A00745168"
-            BuildableName = "SimpleVKPlayer.app"
-            BlueprintName = "SimpleVKPlayer"
-            ReferencedContainer = "container:SimpleVKPlayer.xcodeproj">
+            BuildableName = "Player VK.app"
+            BlueprintName = "Player VK"
+            ReferencedContainer = "container:Player VK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "849C7D2D1C95BB0A00745168"
-            BuildableName = "SimpleVKPlayer.app"
-            BlueprintName = "SimpleVKPlayer"
-            ReferencedContainer = "container:SimpleVKPlayer.xcodeproj">
+            BuildableName = "Player VK.app"
+            BlueprintName = "Player VK"
+            ReferencedContainer = "container:Player VK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "849C7D2D1C95BB0A00745168"
-            BuildableName = "SimpleVKPlayer.app"
-            BlueprintName = "SimpleVKPlayer"
-            ReferencedContainer = "container:SimpleVKPlayer.xcodeproj">
+            BuildableName = "Player VK.app"
+            BlueprintName = "Player VK"
+            ReferencedContainer = "container:Player VK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

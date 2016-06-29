@@ -10,7 +10,12 @@ import UIKit
 import VK_ios_sdk
 
 class LoginForm : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
+    
+
+    
+    
     let SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_AUDIO, VK_PER_PHOTOS, VK_PER_NOHTTPS, VK_PER_EMAIL, VK_PER_MESSAGES]
+    
     @IBOutlet weak var logInBtn: UIButton!
     
     
@@ -88,6 +93,12 @@ class LoginForm : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
             print("Пользователь не авторизован")
             //VKSdk.authorize(SCOPE)
         }
+        
+
+        //refreshBtn.backgroundColor = UIColor.clearColor()
+        logInBtn.layer.cornerRadius = 5
+        //refreshBtn.layer.borderWidth = 1
+        logInBtn.layer.backgroundColor = UIColor(red: 32/255, green: 175/255, blue: 0/255, alpha: 1.0).CGColor
         
     }
     

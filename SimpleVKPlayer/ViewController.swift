@@ -6,6 +6,14 @@
 //  Copyright © 2016 Yukupov Aziz. All rights reserved.
 //
 
+/*
+ f32864 - розовый UIColor(red: 243/255, green: 40/255, blue: 100/255, alpha: 1.0)
+ ff6951 - желтый UIColor(red: 255/255, green: 105/255, blue: 81/255, alpha: 1.0) 
+ 
+ 
+ 
+ */
+
 import UIKit
 import AVFoundation
 
@@ -17,6 +25,14 @@ enum AudioMode {
     case Random
     case Normal
 }
+
+enum DataFormatEnum {
+    case short
+    case full
+    case dataOnly
+    case timeOnly
+}
+
 
 
 enum StateTrack {
@@ -31,6 +47,14 @@ enum StateTrack {
 }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, STKAudioPlayerDelegate {
+   
+    
+    var timerForWave : NSTimer?
+    var change:CGFloat = 0.01
+    @IBOutlet weak var upView : UIView!
+    @IBOutlet weak var downView : UIView!
+    
+    @IBOutlet weak var audioView: SwiftSiriWaveformView!
     
     var blurEffectExtraLight : UIBlurEffect?
     var blurViewExtraLight : UIVisualEffectView?
@@ -39,14 +63,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var AudioPlayer : STKAudioPlayer!
     
-    var currentTrackID : Int?
+    var currentTrackID : Int? = 0
     var arrayTrack : [String]?
     var timer:NSTimer!
     
+    var timerClock : NSTimer!
+    var firstStart = true
     var isPlaying = false
     var isListShow = false
     var allMusicCount = 0
     var arrayTracksObjects = [TrackModel]()
+    
+    @IBOutlet weak var coverDate: UILabel!
+    @IBOutlet weak var coverDay: UILabel!
+    @IBOutlet weak var coverTime: UILabel!
+    
     
     @IBOutlet weak var tableView: UITableView?
     
@@ -70,7 +101,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var timerScroll: UISlider!
     @IBOutlet weak var volumeScroll: UISlider!
     
-    @IBOutlet weak var mainCover: UIImageView?
+    @IBOutlet weak var mainCover: UIView?
 
     
     @IBAction func play(sender: UIButton) {
@@ -88,6 +119,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             self.AudioPlayer.pause()
         }
+        
+        if self.firstStart == true {
+            self.playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
+            self.firstStart = false
+        }
+        
     }
     
     
@@ -130,7 +167,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
                 
                 self.isListShow = false
-                self.showPlayList.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0), forState: .Normal)
+                self.showPlayList.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), forState: .Normal)
             })
 
         } else {
@@ -145,8 +182,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func actionLoopTrack(sender: UIButton) {
-        print("Loop Track")
-        
         if self.AudioModeStatus == .Repeat {
            self.AudioModeStatus = .Normal
         } else {
@@ -164,22 +199,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         upadetBtn()
     }
     
+    
+    internal func refreshAudioView(_:NSTimer) {
+        if self.audioView.amplitude <= self.audioView.idleAmplitude || self.audioView.amplitude > 1.0 {
+            self.change *= -1.0
+        }
+        
+        // Simply set the amplitude to whatever you need and the view will update itself.
+        
+        if self.AudioPlayer.state.rawValue == 16
+        {
+            self.audioView.amplitude += self.change
+        } else {
+            self.audioView.amplitude = CGFloat((-1 * self.AudioPlayer.averagePowerInDecibelsForChannel(1)/100)+0.4) //self.change
+        }
+        
+        print(self.AudioPlayer.averagePowerInDecibelsForChannel(1)/100)
+    }
+    
+    
     func upadetBtn(){
         switch self.AudioModeStatus {
-            case .Normal : print("Normal")
+            case .Normal : //print("Normal")
             
-            playRandom.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
-            playLoop.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            playRandom.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0) , forState: .Normal)
+            playLoop.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), forState: .Normal)
             //showPlayList.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
             
-            case .Repeat : print("Repeat")
-            playRandom.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
-            playLoop.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            case .Repeat : //print("Repeat")
+            playRandom.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), forState: .Normal)
+            playLoop.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0), forState: .Normal)
             //showPlayList.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
         
-            case .Random : print("Random")
-            playRandom.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
-            playLoop.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            case .Random : //print("Random")
+            playRandom.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
+            playLoop.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0) , forState: .Normal)
             //showPlayList.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) , forState: .Normal)
         }
         
@@ -188,11 +242,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func actionExitApp(sender: UIButton) {
         
-        //self.AudioPlayer.stop()
-        self.AudioPlayer.clearQueue()
+        self.AudioPlayer.stop()
         timer?.invalidate()
-        
+        timerClock?.invalidate();
+        timerForWave?.invalidate();
         print("ExitApp")
+        
         VKSdk.forceLogout()
         let isLogged = VKSdk.isLoggedIn()
         if isLogged == true {
@@ -202,6 +257,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let VC1 = self.storyboard!.instantiateViewControllerWithIdentifier("LoginForm") as! LoginForm
             self.navigationController!.pushViewController(VC1, animated: true)
         }
+        
+        
+
+        
     }
     
     
@@ -214,12 +273,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.AudioPlayer = STKAudioPlayer()
         self.AudioPlayer.volume = 0.5
         self.AudioPlayer.equalizerEnabled = true
+        self.AudioPlayer.meteringEnabled = true
         
         self.AudioPlayer.delegate = self
-        self.currentTrackID = 0
+
         
-        self.showPlayList.setTitleColor(UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0), forState: .Normal)
+        self.showPlayList.setTitleColor(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0), forState: .Normal)
+        self.getMetaData()
         
+        self.coverDate.text =  self.dataFromUnixTime(.short).calendarData
+        self.coverDay.text =  self.dataFromUnixTime(.short).dayOfWeek
+        
+        self.coverTime.layer.shadowColor = UIColor(red: 243/255, green: 40/255, blue: 100/255, alpha: 1.0).CGColor
+        self.coverTime.layer.shadowRadius = 4.0
+        self.coverTime.layer.shadowOpacity = 0.6
+        self.coverTime.layer.shadowOffset = CGSizeZero
+        self.coverTime.layer.masksToBounds = false
+ 
+        self.timerClock = NSTimer.scheduledTimerWithTimeInterval(1.0,
+            target: self,
+            selector: #selector(ViewController.tick),
+            userInfo: nil,
+            repeats: true)
+        
+        
+        self.audioView.density = 1.0
+        
+        //self.coverDay.textColor = UIColor(patternImage: UIImage(named: "downViewBg.png")!)
+
+        
+        
+    }
+    
+    func tick() {
+        self.coverTime.text = dataFromUnixTime(.timeOnly).timeNow
+    }
+    
+    func startTimerWave() {
+        
+      self.timerForWave = NSTimer.scheduledTimerWithTimeInterval(0.009, target: self, selector: #selector(ViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
+      print("timerForWave")
     }
  
     override func viewWillAppear(animated: Bool) {
@@ -249,7 +342,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.startTime.text = String(format: "%0.2d:%0.2d", minutes, seconds)
         self.endTime.text = String(format: "-%0.2d:%0.2d", totalMinutes, totalSeconds)
-        //print("timer is work")
+
     }
         
     func getTimer (time : Int) -> String  {
@@ -293,18 +386,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
         })
     }
-    
-    
 
-    
 
     func playTrack(track : String?) {
         self.checkInternetStatus()
 
         AudioPlayer.play(track!)
-
-        //self.getMetaData(track!)
-
         self.trackLb.text = self.arrayTracksObjects[self.currentTrackID!].trackTitle!.truncate(20)
         self.artistLb.text = self.arrayTracksObjects[self.currentTrackID!].trackArtist!.truncate(20)
         
@@ -313,13 +400,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
     
-    func getMetaData(track : String) {
-        
-        self.mainCover!.image = UIImage(named: "emptyCover")
+    func getMetaData() {
         self.trackLb.text = "Track"
         self.artistLb.text = "Artist"
-        
- 
     }
 
     
@@ -375,9 +458,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func audioPlayer(audioPlayer: STKAudioPlayer, stateChanged state: STKAudioPlayerState, previousState: STKAudioPlayerState) {
         switch state.rawValue {
-            case 3 : timer?.invalidate(); self.startTimer(); btPlay.setTitle("\u{f28d}", forState: .Normal); self.tableView?.reloadData(); //print("play");
-            case 9 : timer?.invalidate(); btPlay.setTitle("\u{f144}", forState: .Normal); self.tableView?.reloadData(); // print("pause");
-            case 16 : timer?.invalidate(); btPlay.setTitle("\u{f144}", forState: .Normal); self.tableView?.reloadData(); // print("stop");
+            case 3 : timer?.invalidate(); self.startTimer(); btPlay.setTitle("\u{f28d}", forState: .Normal); self.tableView?.reloadData(); timerForWave?.invalidate(); self.startTimerWave(); //print("play");
+            case 9 : timer?.invalidate(); timerForWave?.invalidate(); btPlay.setTitle("\u{f144}", forState: .Normal); self.tableView?.reloadData(); // print("pause");
+            case 16 : timer?.invalidate(); timerForWave?.invalidate(); btPlay.setTitle("\u{f144}", forState: .Normal); self.tableView?.reloadData(); // print("stop");
             case 5 : print("");
             default : break
         }
@@ -390,13 +473,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func customSlider() {
-        timerScroll.minimumTrackTintColor = UIColor(red: 0/255, green: 80/255, blue: 255/255, alpha: 1.0) /* #0050ff */
-        timerScroll.maximumTrackTintColor = UIColor.whiteColor()
+        timerScroll.minimumTrackTintColor = UIColor.whiteColor()
+        timerScroll.maximumTrackTintColor = UIColor(red: 73/255, green: 73/255, blue: 73/255, alpha: 1.0)
         timerScroll.setThumbImage(UIImage(named: "pan")!, forState: .Normal)
 
         volumeScroll.maximumTrackTintColor = UIColor(red: 239/255, green: 239/255, blue: 239/255, alpha: 1.0) /* #efefef */
-        volumeScroll.minimumTrackTintColor = UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1.0) /* #191919 */
-        volumeScroll.setThumbImage(UIImage(named: "volumePan")!, forState: .Normal)
+        volumeScroll.minimumTrackTintColor = UIColor(red: 239/255, green: 239/255, blue: 239/255, alpha: 1.0)  //UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1.0) /* #191919 */
+        volumeScroll.setThumbImage(UIImage(named: "volumePanRed")!, forState: .Normal)
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -404,7 +487,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.Default
+        return UIStatusBarStyle.LightContent
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -421,21 +504,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! myCell
 
         if self.currentTrackID! == indexPath.row {
-            cell.backgroundColor = UIColor(red: 255/255, green: 191/255, blue: 0/255, alpha: 1.0) /* #ffbf00 */
+            cell.backgroundColor = UIColor(red: 243/255, green: 40/255, blue: 100/255, alpha: 1.0)
+            
+            
 
             cell.cellTrackName.text = self.arrayTracksObjects[indexPath.row].trackTitle!.truncate(30, trailing: "...")
+            cell.cellTrackName.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0) //UIColor(red: 243/255, green: 40/255, blue: 100/255, alpha: 1.0)
             if self.AudioPlayer.state.rawValue == 3  || self.AudioPlayer.state.rawValue == 5 {
                 cell.cellTrackName.addImage("iconPlay.png")
             } else {
                 cell.cellTrackName.addImage("iconStop.png")
             }
             cell.timePlay.text = self.arrayTracksObjects[indexPath.row].trackTime
+            
+            let imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
+            let image = UIImage(named: "cellBg.png")
+            imageView.image = image
+            imageView.contentMode = .ScaleToFill
+            cell.backgroundView = UIView()
+            cell.backgroundView!.addSubview(imageView)
+            
 
         } else {
-           cell.backgroundColor = UIColor(red: 256/256, green: 256/256, blue: 256/256, alpha: 1.0)
-           cell.cellTrackName.text = self.arrayTracksObjects[indexPath.row].trackTitle!.truncate(30, trailing: "...")
-           cell.timePlay.text = self.arrayTracksObjects[indexPath.row].trackTime
+           
+            cell.backgroundColor = UIColor(red: 256/256, green: 256/256, blue: 256/256, alpha: 1.0)
+            let imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
+            let image = UIImage(named: "emptyCellBg.png")
+            imageView.image = image
+            imageView.contentMode = .ScaleToFill
+            cell.backgroundView = UIView()
+            cell.backgroundView!.addSubview(imageView)
+
+            cell.cellTrackName.textColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1.0)
+            
+            cell.cellTrackName.text = self.arrayTracksObjects[indexPath.row].trackTitle!.truncate(30, trailing: "...")
+            cell.timePlay.text = self.arrayTracksObjects[indexPath.row].trackTime
         }
+        
         
         
         if (indexPath.row == self.arrayTracksObjects.count - 1) && (allMusicCount != self.arrayTracksObjects.count - 1) {
@@ -449,6 +554,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.currentTrackID! = indexPath.row
         playTrack(self.arrayTracksObjects[self.currentTrackID!].trackUrl!)
+
         //self.tableView?.reloadData()
     }
     
@@ -461,8 +567,54 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-
     
+    func dataFromUnixTime(formatForData: DataFormatEnum) -> (calendarData : String, dayOfWeek : String, timeNow : String) {
+        
+        //let date = NSDate(timeIntervalSince1970: ts)
+        let date = NSDate()
+        
+        let dayTimePeriodFormatter = NSDateFormatter()
+        dayTimePeriodFormatter.locale = NSLocale(localeIdentifier: "ru_RU")
+        //dayTimePeriodFormatter.dateFormat = "dd MMM YYYY hh:mm a"
+        
+        switch formatForData {
+        case    .short : dayTimePeriodFormatter.dateFormat = "dd MMM YYYY"
+        case     .full : dayTimePeriodFormatter.dateFormat = "dd MMM YYYY HH:mm"
+        case .dataOnly : dayTimePeriodFormatter.dateFormat = "dd MMM"
+        case .timeOnly : dayTimePeriodFormatter.dateFormat = "HH:mm"
+        }
+        
+        let dateString = dayTimePeriodFormatter.stringFromDate(date)
+        let timeNow = dayTimePeriodFormatter.stringFromDate(date)
+        
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year, .Weekday], fromDate: date)
+        
+        //let year =  components.year
+        //let month = components.month
+        //let day = components.day
+        //let week = components.weekday
+        var week = components.weekday
+        if week == 1 {
+            week = 7
+        } else {
+            week = week - 1
+        }
+        var dayWeek : String = ""
+        switch week {
+        case 1 : dayWeek = "Понедельник"
+        case 2 : dayWeek = "Вторник"
+        case 3 : dayWeek = "Среда"
+        case 4 : dayWeek = "Четверг"
+        case 5 : dayWeek = "Пятница"
+        case 6 : dayWeek = "Суббота"
+        case 7 : dayWeek = "Воскресенье"
+        default  : break
+        }
+        return (dateString, dayWeek, timeNow)
+    }
+    
+
 }
 
 

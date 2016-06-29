@@ -506,7 +506,7 @@ static void AudioFileStreamPacketsProc(void* clientData, UInt32 numberBytes, UIn
 
 -(instancetype) init
 {
-    return [self initWithOptions:(STKAudioPlayerOptions){.enableVolumeMixer = YES}];
+    return [self initWithOptions:(STKAudioPlayerOptions){.flushQueueOnSeek = YES, .enableVolumeMixer = YES, .equalizerBandFrequencies = {50, 100, 200, 400, 800, 1600, 2600, 16000}}];
 }
 
 -(instancetype) initWithOptions:(STKAudioPlayerOptions)optionsIn
