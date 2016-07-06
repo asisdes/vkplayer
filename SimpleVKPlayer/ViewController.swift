@@ -214,7 +214,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.audioView.amplitude = CGFloat((-1 * self.AudioPlayer.averagePowerInDecibelsForChannel(1)/100)+0.4) //self.change
         }
         
-        print(self.AudioPlayer.averagePowerInDecibelsForChannel(1)/100)
+        //print(self.AudioPlayer.averagePowerInDecibelsForChannel(1)/100)
     }
     
     
@@ -246,14 +246,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         timer?.invalidate()
         timerClock?.invalidate();
         timerForWave?.invalidate();
-        print("ExitApp")
+        //print("ExitApp")
         
         VKSdk.forceLogout()
         let isLogged = VKSdk.isLoggedIn()
         if isLogged == true {
-            print("Пользователь авторизован")
+            //print("Пользователь авторизован")
         } else if isLogged == false {
-            print("Пользователь не авторизован")
+            //print("Пользователь не авторизован")
             let VC1 = self.storyboard!.instantiateViewControllerWithIdentifier("LoginForm") as! LoginForm
             self.navigationController!.pushViewController(VC1, animated: true)
         }
@@ -312,7 +312,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func startTimerWave() {
         
       self.timerForWave = NSTimer.scheduledTimerWithTimeInterval(0.009, target: self, selector: #selector(ViewController.refreshAudioView(_:)), userInfo: nil, repeats: true)
-      print("timerForWave")
+      //print("timerForWave")
     }
  
     override func viewWillAppear(animated: Bool) {
@@ -382,7 +382,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.tableView?.reloadData()
             }, errorBlock: {
                 (error) -> () in
-                print(error)
+                //print(error)
                 
         })
     }
@@ -411,7 +411,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func audioPlayer(audioPlayer: STKAudioPlayer, didFinishPlayingQueueItemId queueItemId: NSObject, withReason stopReason: STKAudioPlayerStopReason, andProgress progress: Double, andDuration duration: Double) {
-        print("didFinishPlayingQueueItemId")
+        //print("didFinishPlayingQueueItemId")
         
         if self.AudioPlayer.state.rawValue == 16 {
         
@@ -464,7 +464,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             case 5 : print("");
             default : break
         }
-        print(state)
+        //print(state)
     }
  
     override func didReceiveMemoryWarning() {
@@ -544,7 +544,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         if (indexPath.row == self.arrayTracksObjects.count - 1) && (allMusicCount != self.arrayTracksObjects.count - 1) {
-            print("Вы в конце таблицы")
+            //print("Вы в конце таблицы")
             self.getMusic(self.arrayTracksObjects.count - 1)
         }
         return cell

@@ -69,28 +69,28 @@ class LoginForm : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
         VKSdk.wakeUpSession(SCOPE) { (state : VKAuthorizationState, error : NSError!) in
             switch state {
             /// Authorization state unknown, probably ready to work or something went wrong
-            case .Unknown : print("Unknown")
+            case .Unknown : print("")//print("Unknown")
             /// SDK initialized and ready to authorize
-            case .Initialized : print("Initialized");  //VKSdk.authorize(self.SCOPE)
+            case .Initialized : VKSdk.authorize(self.SCOPE) //print("Initialized");  //
             /// Authorization state pending, probably we're trying to load auth information
-            case .Pending : print("Pending")
+            case .Pending : print("")//print("Pending")
             /// Started external authorization process
-            case .External : print("External")
+            case .External : print("")//print("External")
             /// Started in app authorization process, using SafariViewController
-            case .SafariInApp : print("SafariInApp")
+            case .SafariInApp : print("")//print("SafariInApp")
             /// Started in app authorization process, using webview
-            case .Webview : print("Webview")
+            case .Webview : print("")//print("Webview")
             /// User authorized
-            case .Authorized : print("Authorized"); self.skipToView()
+            case .Authorized :  self.skipToView(); print("Authorized");
             /// An error occured, try to wake up session later
-            case .Error : print("Error")
+            case .Error : print("") //print("Error")
             }
         }
         let isLogged = VKSdk.isLoggedIn()
         if isLogged == true {
-            print("Пользователь авторизован")
+            //print("Пользователь авторизован")
         } else if isLogged == false {
-            print("Пользователь не авторизован")
+            //print("Пользователь не авторизован")
             //VKSdk.authorize(SCOPE)
         }
         
